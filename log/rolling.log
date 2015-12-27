@@ -1,0 +1,213 @@
+2015.12.26 15:45:04 CST [INFO] m.j.h.d.d.BaseDao 117 INSERT INTO record VALUES ('id3', 'cid', 'type', '2015-12-26 15:45:03.689', 120.2)
+2015.12.26 15:45:11 CST [INFO] m.j.h.d.d.BaseDao 117 INSERT INTO record VALUES ('id3', 'cid', 'type', '2015-12-26 15:45:10.652', 120.2)
+2015.12.26 15:45:11 CST [ERROR] m.j.h.d.d.BaseDao 122 Duplicate entry 'id3' for key 'PRIMARY'
+2015.12.26 15:46:29 CST [INFO] [m.j.h.d.d.BaseDao 117] INSERT INTO record VALUES ('id', 'cid', 'type', '2015-12-26 15:46:28.821', 120.2)
+2015.12.26 15:53:34 CST [INFO] [m.j.h.Launch 19] Application lanuched.
+
+2015.12.26 15:53:34 CST [INFO] [m.j.h.Launch 38] GUI initialized.
+2015.12.26 15:55:00 CST [INFO] [m.j.h.d.d.BaseDao 117] INSERT INTO record VALUES ('id', 'cid', 'type', '2015-12-26 15:54:59.529', 120.2)
+2015.12.26 15:55:00 CST [ERROR] [m.j.h.d.d.BaseDao 122] Duplicate entry 'id' for key 'PRIMARY'
+2015.12.26 15:59:30 CST [INFO] [m.j.h.d.d.BaseDao 117] INSERT INTO record VALUES ('id', 'cid', 'type', '2015-12-26 15:59:29.831', 120.2)
+2015.12.26 15:59:30 CST [ERROR] [m.j.h.d.d.BaseDao 122] Duplicate entry 'id' for key 'PRIMARY'
+2015.12.26 16:00:12 CST [INFO] [m.j.h.d.d.BaseDao 117] INSERT INTO record VALUES ('id', 'cid', 'type', '2015-12-26 16:00:11.381', 120.2)
+2015.12.26 16:00:12 CST [ERROR] [m.j.h.d.d.BaseDao 122] Duplicate entry 'id' for key 'PRIMARY'
+2015.12.26 17:15:54 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 17:15:54 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 17:22:23 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 17:22:24 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 17:22:50 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 17:22:50 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 17:23:13 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 17:23:14 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 18:56:55 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 18:56:56 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 18:57:31 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 18:57:32 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 18:59:16 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 18:59:16 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 18:59:31 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 18:59:31 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 19:07:49 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 19:07:49 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 19:40:22 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 19:40:22 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 19:40:32 CST [INFO] [m.j.d.d.BaseDao 128] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-26 19:40:31.61', 123.45)
+2015.12.26 19:40:32 CST [ERROR] [m.j.d.d.BaseDao 91] No operations allowed after connection closed.
+2015.12.26 19:49:02 CST [INFO] [m.j.d.d.BaseDao 118] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-26 19:49:01.634', 123.45)
+2015.12.26 19:49:02 CST [ERROR] [m.j.d.d.BaseDao 124] Duplicate entry 'longlongId' for key 'PRIMARY'
+2015.12.26 19:49:02 CST [INFO] [m.j.d.d.BaseDao 67] SELECT * FROM record WHERE id = 'longlongId'
+2015.12.26 19:49:02 CST [ERROR] [m.j.d.d.BaseDao 90] argument type mismatch
+2015.12.26 19:52:22 CST [INFO] [m.j.d.d.BaseDao 118] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-26 19:52:21.596', 123.45)
+2015.12.26 19:52:22 CST [ERROR] [m.j.d.d.BaseDao 124] Duplicate entry 'longlongId' for key 'PRIMARY'
+2015.12.26 19:52:22 CST [INFO] [m.j.d.d.BaseDao 67] SELECT * FROM record WHERE id = 'longlongId'
+2015.12.26 19:52:22 CST [ERROR] [m.j.d.d.BaseDao 90] argument type mismatch
+2015.12.26 19:54:47 CST [INFO] [m.j.d.d.BaseDao 121] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-26 19:54:46.928', 123.45)
+2015.12.26 19:54:47 CST [ERROR] [m.j.d.d.BaseDao 127] Duplicate entry 'longlongId' for key 'PRIMARY'
+2015.12.26 19:54:47 CST [INFO] [m.j.d.d.BaseDao 67] SELECT * FROM record WHERE id = 'longlongId'
+2015.12.26 19:54:47 CST [ERROR] [m.j.d.d.BaseDao 93] argument type mismatch
+2015.12.26 19:57:05 CST [INFO] [m.j.d.d.BaseDao 121] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-26 19:57:04.598', 123.45)
+2015.12.26 19:57:05 CST [ERROR] [m.j.d.d.BaseDao 127] Duplicate entry 'longlongId' for key 'PRIMARY'
+2015.12.26 19:57:05 CST [INFO] [m.j.d.d.BaseDao 67] SELECT * FROM record WHERE id = 'longlongId'
+2015.12.26 20:05:31 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:05:31 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:06:32 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:06:32 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:07:04 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:07:04 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:08:27 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:08:27 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:12:19 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:12:20 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:12:34 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = yjc
+2015.12.26 20:12:34 CST [ERROR] [m.j.d.d.BaseDao 156] Unknown column 'yjc' in 'where clause'
+2015.12.26 20:14:05 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:14:05 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:14:11 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:16:21 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:16:22 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:16:26 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:18:33 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:18:34 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:24:29 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:24:29 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:24:51 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:24:51 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:25:02 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:28:43 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:28:44 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:28:49 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:42:35 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:42:36 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:42:41 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:45:24 CST [INFO] [m.j.Launch 19] Application lanuched.
+2015.12.26 20:45:25 CST [INFO] [m.j.Launch 40] GUI initialized.
+2015.12.26 20:45:28 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:46:33 CST [INFO] [m.j.Launch 19] Application lanuched.
+2015.12.26 20:46:33 CST [INFO] [m.j.Launch 40] GUI initialized.
+2015.12.26 20:46:37 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:47:04 CST [INFO] [m.j.Launch 19] Application lanuched.
+2015.12.26 20:47:04 CST [INFO] [m.j.Launch 40] GUI initialized.
+2015.12.26 20:48:08 CST [INFO] [m.j.Launch 19] Application lanuched.
+2015.12.26 20:48:09 CST [INFO] [m.j.Launch 40] GUI initialized.
+2015.12.26 20:48:10 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:48:32 CST [INFO] [m.j.Launch 19] Application lanuched.
+2015.12.26 20:48:32 CST [INFO] [m.j.Launch 40] GUI initialized.
+2015.12.26 20:48:33 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 20:50:24 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:50:24 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:51:10 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:51:11 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:52:21 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:52:21 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:56:33 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:56:33 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:56:48 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:56:49 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 20:58:06 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 20:58:06 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:00:05 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:00:06 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:00:17 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:00:17 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:01:02 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:01:02 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:04:02 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:04:03 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:24:40 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:24:41 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:26:21 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:26:21 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:29:19 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:29:20 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:29:45 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:29:45 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:30:52 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:30:52 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:34:07 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:34:07 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:35:05 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:35:05 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:35:15 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:35:15 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:39:51 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:39:51 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:39:59 CST [INFO] [m.j.d.d.BaseDao 132] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.26 21:47:38 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:47:38 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:52:04 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:52:05 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:52:58 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:52:58 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:53:20 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:53:20 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:54:37 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:54:38 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:56:43 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:56:44 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.26 21:57:23 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.26 21:57:23 CST [INFO] [m.j.Launch 37] GUI initialized.
+2015.12.27 09:57:59 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 09:58:00 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 10:27:10 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 10:27:10 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 10:27:20 CST [INFO] [m.j.d.d.BaseDao 154] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.27 10:27:21 CST [INFO] [m.j.d.d.BaseDao 197] UPDATE admin SET password = '123' WHERE staff_num = '2333'
+2015.12.27 10:32:46 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 10:32:46 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 10:32:53 CST [INFO] [m.j.d.d.BaseDao 154] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.27 10:32:53 CST [WARN] [m.j.Config 27] Cannot find config file 'other.properties'.
+2015.12.27 10:33:07 CST [INFO] [m.j.d.d.BaseDao 154] SELECT password FROM admin WHERE staff_num = '2333'
+2015.12.27 10:33:07 CST [INFO] [m.j.d.d.BaseDao 197] UPDATE admin SET password = '666' WHERE staff_num = '2333'
+2015.12.27 10:34:31 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 10:34:31 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 10:46:22 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 10:46:23 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 14:16:29 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 14:16:30 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 14:17:16 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 14:17:16 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 14:28:33 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 14:28:33 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 14:30:54 CST [INFO] [m.j.Launch 17] Application lanuched.
+2015.12.27 14:30:54 CST [INFO] [m.j.Launch 34] GUI initialized.
+2015.12.27 14:43:40 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 14:43:40 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 14:44:11 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 14:44:12 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 14:44:30 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 14:44:31 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 14:47:19 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 14:47:19 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 14:50:40 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 14:50:40 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 15:12:48 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 15:12:48 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 15:13:13 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 15:13:13 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 15:14:18 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 15:14:18 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 15:14:40 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 15:14:40 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 15:22:57 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 15:22:57 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 15:23:20 CST [WARN] [m.j.Config 27] Cannot find config file 'other.properties'.
+2015.12.27 15:23:21 CST [INFO] [m.j.d.d.BaseDao 67] SELECT * FROM customer WHERE id_card = '421081'
+2015.12.27 15:25:35 CST [INFO] [m.j.Launch 18] Application lanuched.
+2015.12.27 15:25:36 CST [INFO] [m.j.Launch 36] GUI initialized.
+2015.12.27 15:25:52 CST [WARN] [m.j.Config 27] Cannot find config file 'other.properties'.
+2015.12.27 15:25:52 CST [INFO] [m.j.d.d.BaseDao 67] SELECT * FROM customer WHERE id_card = '421081'
+2015.12.27 15:25:52 CST [INFO] [m.j.d.d.BaseDao 120] INSERT INTO customer VALUES ('421081', 'myname', '12345678909')
+2015.12.27 17:06:11 CST [WARN] [m.j.Config 27] Cannot find config file 'other.properties'.
+2015.12.27 17:06:11 CST [INFO] [m.j.d.d.BaseDao 120] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-27 17:06:10.544', 123.45)
+2015.12.27 17:06:11 CST [INFO] [m.j.d.d.BaseDao 67] SELECT * FROM record WHERE id = 'longlongId'
+2015.12.27 17:24:56 CST [WARN] [m.j.Config 27] Cannot find config file 'other.properties'.
+2015.12.27 17:24:57 CST [INFO] [m.j.d.d.BaseDao 114] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-27 17:24:56.121', 123.45)
+2015.12.27 17:24:57 CST [INFO] [m.j.d.d.BaseDao 164] SELECT * FROM record WHERE id = 'longlongId'
+2015.12.27 17:24:57 CST [ERROR] [m.j.d.d.BaseDao 84] main.java.pojo.Record.setId()
+2015.12.27 17:28:01 CST [WARN] [m.j.Config 27] Cannot find config file 'other.properties'.
+2015.12.27 17:28:01 CST [INFO] [m.j.d.d.BaseDao 124] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-27 17:28:00.854', 123.45)
+2015.12.27 17:28:01 CST [INFO] [m.j.d.d.BaseDao 174] SELECT * FROM record WHERE id = 'longlongId'
+2015.12.27 17:28:01 CST [ERROR] [m.j.d.d.BaseDao 94] main.java.pojo.Record.setActualCost(java.lang.Double)
+2015.12.27 17:29:46 CST [WARN] [m.j.Config 27] Cannot find config file 'other.properties'.
+2015.12.27 17:29:46 CST [INFO] [m.j.d.d.BaseDao 124] INSERT INTO record VALUES ('longlongId', 'customerId', 'testType', '2015-12-27 17:29:45.452', 123.45)
+2015.12.27 17:29:46 CST [INFO] [m.j.d.d.BaseDao 174] SELECT * FROM record WHERE id = 'longlongId'
