@@ -10,11 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.logging.log4j.LogManager;
@@ -58,102 +59,124 @@ public class BaseDao<T, PK extends Serializable>
         String sql = "SELECT * FROM "
                 + stringUtil.upperCamel2Underscore(simpleClassName) + " WHERE "
                 + stringUtil.lowerCamel2Underscore(firstField) + " = ?";
-        List<LinkedHashMap<String, Object>> resultList = executePreparedStatment(
-                sql, new Object[] { pk });
+
+        List<Map<String, Object>> resultList = executePreparedStatmentQuery(sql,
+                new Object[] { pk });
+
         if (resultList.size() > 0)
         {
-            Object obj = null;
+            T obj = null;
             try
             {
-                obj = Class.forName(fullClassName).newInstance();
-                LinkedHashMap<String, Object> row = resultList.get(0);
-                for (Entry<String, Object> entry : row.entrySet())
-                {
-                    Method set = entityClass.getDeclaredMethod(
-                            "set" + stringUtil
-                                    .underscore2UpperCamel(entry.getKey()),
-                            entry.getValue().getClass());
-                    set.invoke(obj, entry.getValue());
-                }
+                obj = (T) Class.forName(fullClassName).newInstance();
+                Map<String, Object> row = resultList.get(0);
+                dataMapToEntity(obj, row);
             } catch (Exception e)
             {
                 logger.error(e.getMessage());
                 e.printStackTrace();
             }
-            return (T) obj;
+            return obj;
         }
         return null;
     }
 
-    protected boolean insert(T obj)
+    @SuppressWarnings("unchecked")
+    protected List<T> findAll()
     {
-        Connection connection = JDBC.getConnection();
-        PreparedStatement ps = null;
+        String sql = "SELECT * FROM "
+                + stringUtil.upperCamel2Underscore(simpleClassName);
+
+        List<Map<String, Object>> resultList = executePreparedStatmentQuery(sql,
+                new Object[0]);
+        List<T> list = new ArrayList<>();
+        for (Map<String, Object> row : resultList)
+        {
+            try
+            {
+                T obj = (T) Class.forName(fullClassName).newInstance();
+                dataMapToEntity(obj, row);
+                list.add(obj);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+    protected int insert(T obj)
+    {
         try
         {
             StringBuffer sqlBuffer = new StringBuffer("INSERT INTO "
                     + stringUtil.upperCamel2Underscore(simpleClassName)
                     + " VALUES (");
-            for (int i = 0; i < fields.length; i++)
-            {
-                sqlBuffer.append("?, ");
-            }
+            Arrays.stream(fields).forEach(f -> sqlBuffer.append("?, "));
             sqlBuffer.delete(sqlBuffer.length() - 2, sqlBuffer.length());
             sqlBuffer.append(")");
 
-            connection.setAutoCommit(false); // Transaction
-            ps = connection.prepareStatement(sqlBuffer.toString());
-            for (int i = 0; i < fields.length; i++)
+            Object[] args = Arrays.stream(fields).map(f ->
             {
-                Field field = fields[i];
-                field.setAccessible(true);
-                setAttribute(ps, i, field.get(obj));
-            }
-            logger.info(toString(ps));
-            ps.executeUpdate();
-            connection.commit();
-            connection.setAutoCommit(true);
-            return true;
+                f.setAccessible(true);
+                try
+                {
+                    return f.get(obj);
+                } catch (Exception e)
+                {
+                    logger.error(e.getMessage());
+                    e.printStackTrace();
+                }
+                return null;
+            }).toArray(Object[]::new);
+
+            return executePreparedStatmentUpdate(sqlBuffer.toString(), args);
         } catch (Exception e)
         {
             logger.error(e.getMessage());
             e.printStackTrace();
-            try
-            {
-                connection.rollback();
-                connection.setAutoCommit(true);
-            } catch (SQLException e1)
-            {
-                logger.error(e1.getMessage());
-                e1.printStackTrace();
-            }
-        } finally
-        {
-            try
-            {
-                ps.close();
-            } catch (SQLException e)
-            {
-                logger.error(e.getMessage());
-                e.printStackTrace();
-            }
         }
-        return false;
+        return 0;
     }
 
-    protected List<List<Object>> findAll()
+    protected int deleteByPk(PK pk)
     {
-        // TODO
-        return null;
-    }
-
-    protected List<LinkedHashMap<String, Object>> executePreparedStatment(
-            String sql, Object[] args)
-    {
-        Connection connection = JDBC.getConnection();
         try
         {
-            PreparedStatement ps = connection.prepareStatement(sql);
+            StringBuffer sqlBuffer = new StringBuffer("DELETE FROM ");
+            sqlBuffer.append(stringUtil.upperCamel2Underscore(simpleClassName));
+            sqlBuffer.append(" WHERE ");
+            sqlBuffer.append(stringUtil.lowerCamel2Underscore(firstField));
+            sqlBuffer.append(" = ?");
+
+            return executePreparedStatmentUpdate(sqlBuffer.toString(),
+                    new Object[] { pk });
+        } catch (Exception e)
+        {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    protected List<Map<String, Object>> executeQuery(String sql)
+    {
+        return executePreparedStatmentQuery(sql, new Object[0]);
+    }
+
+    protected int executeUpdate(String sql)
+    {
+        return executePreparedStatmentUpdate(sql, new Object[0]);
+    }
+
+    private List<Map<String, Object>> executePreparedStatmentQuery(String sql,
+            Object[] args)
+    {
+        Connection connection = JDBC.getConnection();
+        PreparedStatement ps = null;
+        try
+        {
+            ps = connection.prepareStatement(sql);
             for (int i = 0; i < args.length; i++)
             {
                 Object arg = args[i];
@@ -163,42 +186,10 @@ public class BaseDao<T, PK extends Serializable>
             ResultSet resultSet = ps.executeQuery();
             ResultSetMetaData metaData = resultSet.getMetaData();
             int columnCount = metaData.getColumnCount();
-            List<LinkedHashMap<String, Object>> resultList = new ArrayList<>();
+            List<Map<String, Object>> resultList = new ArrayList<>();
             while (resultSet.next())
             {
-                LinkedHashMap<String, Object> rowData = new LinkedHashMap<>();
-                for (int i = 0; i < columnCount; i++)
-                {
-                    rowData.put(metaData.getColumnLabel(i + 1),
-                            resultSet.getObject(i + 1));
-                }
-                resultList.add(rowData);
-            }
-            return resultList;
-        } catch (Exception e)
-        {
-            logger.error(e.getMessage());
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    protected List<LinkedHashMap<String, Object>> executeQuery(String sql)
-    {
-        logger.info(sql);
-        Connection connection = JDBC.getConnection();
-        Statement statement = null;
-        ResultSet resultSet = null;
-        try
-        {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            List<LinkedHashMap<String, Object>> resultList = new ArrayList<>();
-            while (resultSet.next())
-            {
-                LinkedHashMap<String, Object> rowData = new LinkedHashMap<>();
+                HashMap<String, Object> rowData = new HashMap<>();
                 for (int i = 0; i < columnCount; i++)
                 {
                     rowData.put(metaData.getColumnLabel(i + 1),
@@ -215,8 +206,10 @@ public class BaseDao<T, PK extends Serializable>
         {
             try
             {
-                resultSet.close();
-                statement.close();
+                if (ps != null)
+                {
+                    ps.close();
+                }
             } catch (SQLException e)
             {
                 logger.error(e.getMessage());
@@ -226,19 +219,24 @@ public class BaseDao<T, PK extends Serializable>
         return null;
     }
 
-    protected int executeUpdate(String sql)
+    private int executePreparedStatmentUpdate(String sql, Object[] args)
     {
-        logger.info(sql);
         Connection connection = JDBC.getConnection();
-        Statement statement = null;
+        PreparedStatement ps = null;
         try
         {
             connection.setAutoCommit(false); // Transaction
-            statement = connection.createStatement();
-            int affect = statement.executeUpdate(sql);
+            ps = connection.prepareStatement(sql);
+            for (int i = 0; i < args.length; i++)
+            {
+                Object arg = args[i];
+                setAttribute(ps, i, arg);
+            }
+            logger.info(toString(ps));
+            int affectRowCount = ps.executeUpdate();
             connection.commit();
             connection.setAutoCommit(true);
-            return affect;
+            return affectRowCount;
         } catch (Exception e)
         {
             logger.error(e.getMessage());
@@ -256,7 +254,10 @@ public class BaseDao<T, PK extends Serializable>
         {
             try
             {
-                statement.close();
+                if (ps != null)
+                {
+                    ps.close();
+                }
             } catch (SQLException e)
             {
                 logger.error(e.getMessage());
@@ -264,6 +265,18 @@ public class BaseDao<T, PK extends Serializable>
             }
         }
         return 0;
+    }
+
+    private void dataMapToEntity(Object obj, Map<String, Object> dataMap)
+            throws Exception
+    {
+        for (Entry<String, Object> entry : dataMap.entrySet())
+        {
+            Method set = entityClass.getDeclaredMethod(
+                    "set" + stringUtil.underscore2UpperCamel(entry.getKey()),
+                    entry.getValue().getClass());
+            set.invoke(obj, entry.getValue());
+        }
     }
 
     private String toString(PreparedStatement ps)

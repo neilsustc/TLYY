@@ -77,7 +77,8 @@ public class MainFrame extends JFrame
         jpUserMgmt.setBorder(new TitledBorder(" Account "));
 
         // Actions
-        new Thread(() -> {
+        new Thread(() ->
+        {
             while (updateTime)
             {
                 jlbTime.setText(dateFormat.format(new Date()));
@@ -96,16 +97,20 @@ public class MainFrame extends JFrame
             public void keyReleased(KeyEvent e)
             {
                 String regex = jtfFilter.getText().trim();
-                setFilter(regex);
+                setFilter(tbCustomer, regex);
             }
         });
-        jbtnChangePass.addActionListener(e -> {
-            new ChangePassFrame(staffNum);
+        tbCustomer.addRowSelectionListener(e ->
+        {
+            String selected = tbCustomer.getSelectedRow()[0];
+            System.out.println(selected);
         });
+        jbtnChangePass.addActionListener(e -> new ChangePassFrame(staffNum));
+        jbtnUserMgmt.addActionListener(e -> new CustomerMgmtFrame());
         addWindowListener(new WindowAdapter()
         {
             @Override
-            public void windowClosing(WindowEvent e)
+            public void windowClosed(WindowEvent e)
             {
                 super.windowClosing(e);
                 updateTime = false; // Stop thread
@@ -149,13 +154,13 @@ public class MainFrame extends JFrame
         setVisible(true);
     }
 
-    private void setFilter(String regex)
+    private void setFilter(ListTable table, String regex)
     {
-        tbRoom.clearFilter();
-        int columnCount = tbRoom.getColumnCount();
+        table.clearFilter();
+        int columnCount = table.getColumnCount();
         for (int i = 0; i < columnCount; i++)
         {
-            tbRoom.addColumnRegexFilter(i, regex);
+            table.addColumnRegexFilter(i, regex);
         }
     }
 }

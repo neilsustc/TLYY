@@ -12,7 +12,7 @@ public class AdminService
                 || "".equals(pass))
             return false;
         else
-            return pass.equals(adminDao.findPassByAccount(staffNum));
+            return pass.equals(adminDao.findPassByStaffNum(staffNum));
     }
 
     public boolean changePass(String staffNum, String newPass)

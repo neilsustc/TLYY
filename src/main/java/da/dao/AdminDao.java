@@ -4,12 +4,12 @@ import main.java.pojo.Admin;
 
 public class AdminDao extends BaseDao<Admin, String>
 {
-    public Admin findByStaffNum(String staffNum)
-    {
-        return findByPk(staffNum);
-    }
+//    public Admin findByStaffNum(String staffNum)
+//    {
+//        return findByPk(staffNum);
+//    }
 
-    public String findPassByAccount(String staffNum)
+    public String findPassByStaffNum(String staffNum)
     {
         return executeQuery("SELECT password FROM admin WHERE staff_num = '"
                 + staffNum + "'").get(0).get("password").toString();

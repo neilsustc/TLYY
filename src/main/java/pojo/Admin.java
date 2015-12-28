@@ -6,6 +6,17 @@ public class Admin
     private String staffName;
     private String password;
 
+    public Admin()
+    {
+    }
+
+    public Admin(String staffNum, String staffName, String password)
+    {
+        this.staffNum = staffNum;
+        this.staffName = staffName;
+        this.password = password;
+    }
+
     public String getStaffNum()
     {
         return staffNum;

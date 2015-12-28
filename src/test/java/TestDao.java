@@ -3,6 +3,7 @@ package test.java;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import main.java.da.dao.AdminDao;
 import main.java.da.dao.RecordDao;
 import main.java.pojo.Record;
 
@@ -11,11 +12,17 @@ import main.java.pojo.Record;
  * save(Record)<br>
  * findById(String)<br>
  * <br>
+ * AdminDao:<br>
+ * findPassByStaffNum(String)<br>
+ * setNewPass(String, String)<br>
+ * <br>
  * BaseDao:<br>
  * insert(T)<br>
- * findByPk(Pk)
+ * findByPk(Pk)<br>
+ * executeQuery(String)<br>
+ * executeUpdate(String)<br>
  */
-public class TestRecordDao
+public class TestDao
 {
     public static void main(String[] args)
     {
@@ -23,11 +30,12 @@ public class TestRecordDao
                 new Timestamp(new Date().getTime()), 123.45);
         RecordDao recordDao = new RecordDao();
         recordDao.save(record);
-        Record record2 = recordDao.findById(record.getId());
-        System.out.println(record2.getId());
-        System.out.println(record2.getCustomerId());
-        System.out.println(record2.getType());
-        System.out.println(record2.getTimestamp());
-        System.out.println(record2.getActualCost());
+        System.out.println(recordDao.findById(record.getId()));
+
+        AdminDao adminDao = new AdminDao();
+        System.out.println(adminDao.findPassByStaffNum("2333"));
+        adminDao.setNewPass("2333", "666");
+
+        System.out.println("over");
     }
 }

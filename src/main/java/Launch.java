@@ -30,9 +30,9 @@ public class Launch
             UIManager.put("TitledBorder.font", defFont);
             // UIManager.put("Panel.border", new LineBorder(Color.black));
             // new LoginFrame();
-//            new MainFrame("2333");
+            new MainFrame("2333");
             // new ChangePassFrame();
-            new CustomerMgmtFrame();
+//            new CustomerMgmtFrame();
             logger.info("GUI initialized.");
         } catch (Exception e)
         {

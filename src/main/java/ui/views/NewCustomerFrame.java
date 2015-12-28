@@ -41,10 +41,12 @@ public class NewCustomerFrame extends JFrame
         // Initialize
 
         // Actions
-        jbtnCancel.addActionListener(e -> {
+        jbtnCancel.addActionListener(e ->
+        {
             dispose();
         });
-        jbtnOK.addActionListener(e -> {
+        jbtnOK.addActionListener(e ->
+        {
             String idCard = jtfIdCard.getText().trim();
             String name = jtfName.getText().trim();
             String phoneNum = jtfPhoneNum.getText().trim();
@@ -60,8 +62,8 @@ public class NewCustomerFrame extends JFrame
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } else
                 {
-                    if (customerService
-                            .addCustomer(new Customer(idCard, name, phoneNum)))
+                    if (customerService.addCustomer(
+                            new Customer(idCard, name, phoneNum)) == 1)
                     {
                         JOptionPane.showMessageDialog(null, "Customer added");
                         dispose();

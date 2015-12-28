@@ -24,16 +24,22 @@ public class ListTable extends JPanel
 {
     private static final long serialVersionUID = 1L;
 
+    // Actions
+    private ArrayList<ListSelectionListener> selectionListenerList;
+    private ListSelectionEvent2TableListener list2TableListener = new ListSelectionEvent2TableListener();
+    private int currentSelectedIndex = -1;
+
     public final static int DISABLE = 1;
     public final static int WARNING = 2;
     private Color warnBgColor = new Color(249, 204, 226);
     private Color borderColor = new Color(210, 210, 210);
     private Color headerColor = new Color(213, 234, 255);
-
     private String hGap = String.format("%-8s", "");
+
     private HashMap<Integer, String> regexColFilters = new HashMap<>();
     private HashMap<Integer, String> warningColFilters = new HashMap<>();
     private HashSet<Integer> warnRows = new HashSet<>();
+
     private List<JPanel> jpColumns = new ArrayList<>();
     private List<JLabel> jlbColumnNames = new ArrayList<>();
     private List<DefaultListModel<String>> listModels = new ArrayList<>();
@@ -41,8 +47,7 @@ public class ListTable extends JPanel
     private List<String[]> data = new ArrayList<>();
     private List<String[]> currentViewData = new ArrayList<>();
 
-    HighlightCellRenderer cellRenderer = new HighlightCellRenderer();
-    SyncSelectionListener syncListener = new SyncSelectionListener();
+    private HighlightCellRenderer cellRenderer = new HighlightCellRenderer();
 
     public ListTable(String[] columnNames)
     {
@@ -61,7 +66,7 @@ public class ListTable extends JPanel
 
             JList<String> column = new JList<String>(columnModel); // List
             column.setCellRenderer(cellRenderer);
-            column.addListSelectionListener(syncListener);
+            column.addListSelectionListener(list2TableListener);
             lists.add(column);
 
             JPanel jpColumn = new JPanel(new StackLayout(StackLayout.VERTICAL,
@@ -73,6 +78,9 @@ public class ListTable extends JPanel
             add(jpColumn);
         }
 
+        // Actions
+        addRowSelectionListener(new SyncListSelectionListener());
+        addRowSelectionListener(e -> System.out.println("row"));
         setLayout(new StackLayout(StackLayout.HORIZONTAL, 0));
         setBorder(new LineBorder(borderColor));
     }
@@ -125,6 +133,8 @@ public class ListTable extends JPanel
     public String[] getSelectedRow()
     {
         int selectedIndex = lists.get(0).getSelectedIndex();
+        if (selectedIndex == -1)
+            return null;
         return currentViewData.get(selectedIndex);
     }
 
@@ -183,17 +193,75 @@ public class ListTable extends JPanel
         return parent.contains(matcher) || parent.matches(matcher);
     }
 
-    class SyncSelectionListener implements ListSelectionListener
+    public void clearFilter()
+    {
+        regexColFilters.clear();
+    }
+
+    public synchronized void addRowSelectionListener(ListSelectionListener l)
+    {
+        if (selectionListenerList == null)
+            selectionListenerList = new ArrayList<>();
+        selectionListenerList.add(l);
+    }
+
+    public synchronized void removeRowSelectionListener(ListSelectionListener l)
+    {
+        if (selectionListenerList != null && selectionListenerList.contains(l))
+        {
+            selectionListenerList.remove(l);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void processRowSelectionEvent(ListSelectionEvent e)
+    {
+        ArrayList<ListSelectionListener> list;
+        synchronized (this)
+        {
+            if (selectionListenerList == null)
+                return;
+            list = (ArrayList<ListSelectionListener>) selectionListenerList
+                    .clone();
+        }
+        for (ListSelectionListener listener : list)
+        {
+            listener.valueChanged(e);
+        }
+    }
+
+    class SyncListSelectionListener implements ListSelectionListener
+    {
+        @SuppressWarnings("unchecked")
+        @Override
+        public void valueChanged(ListSelectionEvent e)
+        {
+            JList<String> self = (JList<String>) e.getSource();
+            int selectedIndex = e.getFirstIndex();
+            for (JList<String> jList : lists)
+            {
+                if (jList.equals(self)
+                        || jList.getSelectedIndex() == selectedIndex)
+                    continue;
+                jList.setSelectedIndex(selectedIndex);
+            }
+        }
+    }
+
+    /** ListSelectionEvent -> RowSelectionEvent */
+    class ListSelectionEvent2TableListener implements ListSelectionListener
     {
         @Override
         public void valueChanged(ListSelectionEvent e)
         {
             JList<?> jlst = (JList<?>) e.getSource();
             int selectedIndex = jlst.getSelectedIndex();
-            for (JList<String> list : lists)
-            {
-                list.setSelectedIndex(selectedIndex);
-            }
+            /** prevent more TableEvent */
+            if (selectedIndex == currentSelectedIndex)
+                return;
+            currentSelectedIndex = selectedIndex;
+            processRowSelectionEvent(new ListSelectionEvent(jlst, selectedIndex,
+                    selectedIndex, false));
         }
     }
 
@@ -217,10 +285,5 @@ public class ListTable extends JPanel
             }
             return comp;
         }
-    }
-
-    public void clearFilter()
-    {
-        regexColFilters.clear();
     }
 }

@@ -1,6 +1,7 @@
 package main.java.bl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import main.java.da.dao.CustomerDao;
 import main.java.pojo.Customer;
@@ -14,14 +15,21 @@ public class CustomerService
         return customerDao.findByIdCard(idCard) != null;
     }
 
-    public boolean addCustomer(Customer customer)
+    public int addCustomer(Customer customer)
     {
         return customerDao.saveCustomer(customer);
     }
 
-    public List<String[]> findAllCustemers()
+    public List<String[]> findAllCustemersInArray()
     {
-        // TODO
-        return null;
+        return customerDao
+                .findAllCustemers().stream().map(c -> new String[] {
+                        c.getIdCard(), c.getName(), c.getPhoneNum() })
+                .collect(Collectors.toList());
+    }
+
+    public int deleteCustomer(String idCard)
+    {
+        return customerDao.deleteCustomer(idCard);
     }
 }

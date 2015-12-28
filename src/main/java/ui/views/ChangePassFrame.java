@@ -50,10 +50,9 @@ public class ChangePassFrame extends JFrame
         jpfOldPass.addKeyListener(listener);
         jpfNewPass.addKeyListener(listener);
         jpfConfirm.addKeyListener(listener);
-        jbtnCancel.addActionListener(e -> {
-            dispose();
-        });
-        jbtnOK.addActionListener(e -> {
+        jbtnCancel.addActionListener(e -> dispose());
+        jbtnOK.addActionListener(e ->
+        {
             String oldPass = new String(jpfOldPass.getPassword()).trim();
             String newPass = new String(jpfNewPass.getPassword()).trim();
             if (adminService.checkPassword(staffNum, oldPass))

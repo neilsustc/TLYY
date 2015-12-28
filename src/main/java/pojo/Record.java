@@ -73,4 +73,11 @@ public class Record
     {
         this.actualCost = actualCost;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("%s; %s; %s; %s; %f", id, customerId, type,
+                timestamp, actualCost);
+    }
 }

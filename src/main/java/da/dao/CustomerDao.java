@@ -1,5 +1,7 @@
 package main.java.da.dao;
 
+import java.util.List;
+
 import main.java.pojo.Customer;
 
 public class CustomerDao extends BaseDao<Customer, String>
@@ -9,8 +11,18 @@ public class CustomerDao extends BaseDao<Customer, String>
         return findByPk(idCard);
     }
 
-    public boolean saveCustomer(Customer customer)
+    public int saveCustomer(Customer customer)
     {
         return insert(customer);
+    }
+
+    public List<Customer> findAllCustemers()
+    {
+        return findAll();
+    }
+
+    public int deleteCustomer(String idCard)
+    {
+        return deleteByPk(idCard);
     }
 }
